@@ -1,4 +1,4 @@
-#Homework 2
+# Homework 2
 
 Given the following code in C language, You will need to translate it to the correspondend code in **asm** for the Sparc v8 computer architecture. 
 
