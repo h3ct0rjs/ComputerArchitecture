@@ -10,8 +10,7 @@ int main(){
 }
 ```
 
-In order to do the previous exercise, we need to use the official SPARCV8 (manual)[www.gaisler.com/doc/sparcv8.pdf
-] and check what is the apropiate way to translate the previous code using the instruction set, the following code 
+In order to do the previous exercise, we need to use the official SPARCV8 [Manual](www.gaisler.com/doc/sparcv8.pdf) and check what is the apropiate way to translate the previous code using the instruction set, the following code 
 is the result of the translation:
 
 ```asm
