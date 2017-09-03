@@ -61,7 +61,8 @@ main:
 
 **ToDo** Complete Translation in the night
 format3
-format3
+
+
 | op  | rd  | op3  | rs1  | i=1  | imm13   |
 |---|---|---|---|---|---:|
 | 10  | 11000  |000010   |00000   | 1  |0000000000000 |
