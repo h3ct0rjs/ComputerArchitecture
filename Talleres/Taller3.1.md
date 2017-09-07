@@ -55,7 +55,7 @@ main:
 0x0058    ld %l0, 8, %l1
 0x005c    add %l3, %l2, %l3 
 0x0060    sll %l1,4,%l1    
-0x0064    sub %l3,%l1, %l3
+0x0064    sub %l3,%l1, %O1
 ```
 # Machine Code Generated :
 
