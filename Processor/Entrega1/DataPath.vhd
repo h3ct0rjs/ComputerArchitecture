@@ -63,7 +63,7 @@ begin
       rst   => rst,
       clk 	=> clk,
 		DAT_in => mid_addr,
-      DAT_out   => mid_addr
+      DAT_out   => addr
       );
 		
   -- Instantiate Sumador

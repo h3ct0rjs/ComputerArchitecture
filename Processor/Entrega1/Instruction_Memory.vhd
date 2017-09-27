@@ -2,18 +2,19 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
  
-entity rom512_28b is
+entity IM is
     port (
         clk  : in  std_logic;
-        addr : in  std_logic_vector(6 downto 0);
+		  rst  : in std_logic;
+        addr : in  std_logic_vector(31 downto 0);
         data : out std_logic_vector(31 downto 0)
     );
-end rom512_28b;
+end IM;
  
-architecture behavioral of rom512_28b is
+architecture behavioral of IM is
     type memoria_rom is array (0 to 63) of std_logic_vector (31 downto 0);
     signal ROM : memoria_rom := (
-        "00000101000111100011111001111001", 
+"00000101000111100011111001111001", 
 "01111111101001001110101011000000",
 "10111001010111000001010101011001",
 "11011011100001011000001001010100",
@@ -78,12 +79,16 @@ architecture behavioral of rom512_28b is
 "00101110110110011011111100010110",
 "01100001110001001101000101111010" -- Fila con datos 56 a 63                                                  
     );
-begin
-    process (clk) begin
-        if rising_edge(clk) then
-                data <= ROM(conv_integer(addr));
-        end if;
-    end process;
+begin			
+  process (clk) begin
+	 if rising_edge(clk) then
+			 if (rst = '1') then
+					data <= "00000000000000000000000000000000";
+				else
+					data <= ROM(conv_integer(addr));
+			 end if;
+	 end if;
+  end process;
 end behavioral;
 
 
