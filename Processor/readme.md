@@ -1,2 +1,6 @@
 # Sparc v8 Processor
-Members: Carlos Andres Arias L, Miguel Angel Henao P, Camila , Hector F. Jimenez
+Members of Empanada's Team :
+ * Carlos Andres Arias L
+ * Miguel Angel Henao P
+ * Camila Marin Aguirre
+ * Héctor F. Jiménez S
