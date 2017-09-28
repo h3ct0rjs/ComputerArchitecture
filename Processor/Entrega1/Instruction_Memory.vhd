@@ -4,7 +4,6 @@ use ieee.std_logic_unsigned.all;
  
 entity IM is
     port (
-        clk  : in  std_logic;
 		  rst  : in std_logic;
         addr : in  std_logic_vector(31 downto 0);
         data : out std_logic_vector(31 downto 0)
@@ -79,16 +78,15 @@ architecture behavioral of IM is
 "00101110110110011011111100010110",
 "01100001110001001101000101111010" -- Fila con datos 56 a 63                                                  
     );
-begin			
-  process (clk) begin
-	 if rising_edge(clk) then
-			 if (rst = '1') then
-					data <= "00000000000000000000000000000000";
-				else
-					data <= ROM(conv_integer(addr));
-			 end if;
+begin
+	process(rst, addr)
+	begin
+	 if (rst = '1') then
+			data <= "00000000000000000000000000000000";
+		else
+			data <= ROM(conv_integer(addr));
 	 end if;
-  end process;
+	end process;
 end behavioral;
 
 

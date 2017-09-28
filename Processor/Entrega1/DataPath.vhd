@@ -1,4 +1,3 @@
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_unsigned.all;
@@ -34,16 +33,15 @@ architecture Behavioral of DataPath is
 	
 	component IM is
     port (
-        clk  : in  std_logic;
 		  rst  : in std_logic;
         addr : in  std_logic_vector(31 downto 0);
         data : out std_logic_vector(31 downto 0)
     );
 end component IM;
 	
-	signal addr: std_logic_vector(31 downto 0);
-	signal mid_addr: std_logic_vector(31 downto 0);
-	signal new_addr: std_logic_vector(31 downto 0);
+	signal addr: std_logic_vector(31 downto 0):= "00000000000000000000000000000000";
+	signal mid_addr: std_logic_vector(31 downto 0):= "00000000000000000000000000000000";
+	signal new_addr: std_logic_vector(31 downto 0):= "00000000000000000000000000000000";
 	signal aumento: std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
 	signal instruction: std_logic_vector(31 downto 0);
 begin
@@ -63,7 +61,7 @@ begin
       rst   => rst,
       clk 	=> clk,
 		DAT_in => mid_addr,
-      DAT_out   => addr
+      DAT_out  => addr
       );
 		
   -- Instantiate Sumador
@@ -77,7 +75,6 @@ begin
    -- Instantiate IM
   Instruction_mem : IM
     port map (
-		clk  => clk,
 		rst  => rst,
       addr => addr, 
       data => Data_out
@@ -86,7 +83,11 @@ begin
 	process(clk) 
 	begin
 		if rising_edge(clk) then
-			aumento <= aumento + '1';
+			if (rst = '1') then
+				aumento <= "00000000000000000000000000000000";
+			else
+				aumento <= "00000000000000000000000000000001";
+			end if;
 		end if;
 	end process;
 		
