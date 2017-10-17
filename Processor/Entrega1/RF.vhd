@@ -15,22 +15,27 @@ end RF;
 
 architecture Behavioral of RF is
 
-type ram_type is array (0 to 31) of std_logic_vector (31 downto 0);
+type ram_type is array (0 to 39) of std_logic_vector (31 downto 0);
 signal registers : ram_type :=(others => x"00000000");
 
 begin
-process(Rs1,Rs2,Rd,Rst,Dwr,registers)
-begin
-	if(Rst='1')then
-		ORs1 <= "00000000000000000000000000000000";
-		ORs2 <= "00000000000000000000000000000000";
-	else 
-		if(rd/="00000")then
-				registers(conv_integer(rd)) <= dwr; 
-		end if;
-		Ors1 <= registers(conv_integer(rs1));
-		Ors2 <= registers(conv_integer(rs2));
-	end if;
+process(rs1,rs2,rd,dwr, rst)
+	begin 
 	
-end process;
+		registers(0) <= x"00000000";
+		
+		if rst = '0' then
+			if(rd/="00000")then
+				registers(conv_integer(rd)) <= Dwr; 
+			end if;
+			ORs1 <= registers(conv_integer(Rs1));
+			ORs2 <= registers(conv_integer(Rs2));
+		else 
+			ORs1 <= (others => '0');
+			ORs2 <= (others => '0');
+			--registers(16) <= x"00000011";
+			--registers(17) <= x"FFFFFFF7";
+			--registers(18) <= x"0000000E";
+		end if;
+	end process;
 end Behavioral;
