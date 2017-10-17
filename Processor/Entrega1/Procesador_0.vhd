@@ -112,7 +112,7 @@ begin
 	
 	Inst_Sumador: Sumador PORT MAP(
 		operador1 => "00000000000000000000000000000001",
-		operador2 => out_nPC,
+		operador2 => pc_out,
 		resultado => data_in
 	);
 	
