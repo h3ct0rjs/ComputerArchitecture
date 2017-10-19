@@ -89,7 +89,7 @@ process(ALUOP,Oper1,Oper2)
 			--SAVE 57
 			when "111001" => Salida <= Oper1 + Oper2;
 			--RESTORE 58
-			when "111010" => Salida <= Oper1 + Oper2;
+			when "111101" => Salida <= Oper1 + Oper2;
 				
 			when others =>
 				Salida <= (others=>'1'); --error
