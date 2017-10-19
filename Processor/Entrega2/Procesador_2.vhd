@@ -24,6 +24,15 @@ signal mux_out: STD_LOGIC_VECTOR(31 downto 0):=(others=>'0');
 signal cpu_out: STD_LOGIC_VECTOR(5 downto 0):=(others=>'0');
 signal alu_out: STD_LOGIC_VECTOR(31 downto 0):=(others=>'0');
 
+signal cwp: std_logic:= '0';
+signal nrs1: STD_LOGIC_VECTOR (5 downto 0):=(others => '0');
+signal nrs2: STD_LOGIC_VECTOR (5 downto 0):=(others => '0');
+signal nrd: STD_LOGIC_VECTOR (5 downto 0):=(others => '0');
+signal Ncwp: std_logic:= '0';
+signal carry: std_logic:= '0';
+
+signal nzvc: STD_LOGIC_VECTOR (3 downto 0):=(others => '0');
+
 COMPONENT PC
 	PORT(
 		rst : IN std_logic;
@@ -49,6 +58,19 @@ COMPONENT PC
 		);
 	END COMPONENT;
 	
+	COMPONENT windows_manager_arch
+		Port ( rs1 : in  STD_LOGIC_VECTOR (4 downto 0);
+           rs2 : in  STD_LOGIC_VECTOR (4 downto 0);
+           rd : in  STD_LOGIC_VECTOR (4 downto 0);
+           op : in  STD_LOGIC_VECTOR (1 downto 0);
+           op3 : in  STD_LOGIC_VECTOR (5 downto 0);
+           CWP : in  STD_LOGIC;
+           nrs1 : out  STD_LOGIC_VECTOR (5 downto 0);
+           nrs2 : out  STD_LOGIC_VECTOR (5 downto 0);
+           nrd : out  STD_LOGIC_VECTOR (5 downto 0);
+           Ncwp : out  STD_LOGIC);
+	END COMPONENT;
+	
 	COMPONENT Mod5Seu
 	PORT(
 		imm13 : IN std_logic_vector(12 downto 0);          
@@ -68,9 +90,9 @@ COMPONENT PC
 	COMPONENT RF
 	PORT(
 		rst : in  STD_LOGIC;
-		rs1 : IN std_logic_vector(4 downto 0);
-		rs2 : IN std_logic_vector(4 downto 0);
-		rd : IN std_logic_vector(4 downto 0); 
+		rs1 : IN std_logic_vector(5 downto 0);
+		rs2 : IN std_logic_vector(5 downto 0);
+		rd : IN std_logic_vector(5 downto 0); 
 		dwr : IN std_logic_vector(31 downto 0); 		
 		ORs1 : OUT std_logic_vector(31 downto 0);
 		ORs2 : OUT std_logic_vector(31 downto 0)
@@ -81,7 +103,8 @@ COMPONENT PC
 	PORT(
 		Oper1 : IN std_logic_vector(31 downto 0);
 		Oper2 : IN std_logic_vector(31 downto 0);
-		ALUOP : IN std_logic_vector(5 downto 0);          
+		ALUOP : IN std_logic_vector(5 downto 0);
+		carry : in std_logic;
 		Salida : OUT std_logic_vector(31 downto 0)
 		);
 	END COMPONENT;
@@ -92,6 +115,24 @@ COMPONENT PC
 		op3 : IN std_logic_vector(5 downto 0);          
 		aluop : OUT std_logic_vector(5 downto 0)
 		);
+	END COMPONENT;
+	
+	COMPONENT PSR
+	Port ( NZVC : in  STD_LOGIC_VECTOR (3 downto 0);
+		 	Rst : in  STD_LOGIC;
+		   clk : in  STD_LOGIC;
+			Ncwp : in STD_LOGIC; 
+         Carry : out  STD_LOGIC;
+			Cwp : out STD_LOGIC
+			);
+	END COMPONENT;
+	
+	COMPONENT PSR_Modifier 
+    Port( AluResult : in  STD_LOGIC_VECTOR (31 downto 0);
+           OP1 : in  STD_LOGIC;
+           OP2 : in  STD_LOGIC;
+           AluOp : in  STD_LOGIC_VECTOR (5 downto 0);
+           NZVC : out  STD_LOGIC_VECTOR (3 downto 0));
 	END COMPONENT;
 
 begin
@@ -133,12 +174,41 @@ begin
 		i => im_out(13),
 		Oper2 => mux_out
 	);
-	
-	Inst_RF: RF PORT MAP( 
-		rst => rst,
+
+	Inst_WM : windows_manager_arch port map(
 		rs1 => im_out(18 downto 14),
 		rs2 => im_out(4 downto 0),
 		rd => im_out(29 downto 25),
+        op => im_out(31 downto 30),
+		op3 => im_out(24 downto 19),
+        CWP => cwp,
+        nrs1 => nrs1,
+        nrs2 => nrs2,
+        nrd => nrd,
+        Ncwp => Ncwp
+	);
+	Inst_PSR : PSR port map(
+		NZVC => nzvc,
+	 	rst => rst,
+	    clk => clk,
+		Ncwp => Ncwp,
+        Carry => carry,	
+		cwp => cwp
+	);
+
+	Inst_PSR_mod : PSR_modifier port map(
+		AluResult => alu_out,
+           OP1 => crs1_aux(31),
+           OP2 => mux_out(31),
+           AluOp => cpu_out,
+           NZVC => nzvc
+	);
+	
+	Inst_RF: RF PORT MAP( 
+		rst => rst,
+		rs1 => nrs1,
+		rs2 => nrs2,
+		rd => nrd,
 		dwr => alu_out,
 		ORs1 => crs1_aux,
 		ORs2 => crs2_aux
@@ -148,6 +218,7 @@ begin
 		Oper1 => crs1_aux,
 		Oper2 => mux_out,
 		ALUOP => cpu_out,
+		carry => carry,
 		Salida => alu_out
 	);
 	

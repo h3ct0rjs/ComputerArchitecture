@@ -4,9 +4,9 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 
 entity RF is
-    Port ( Rs1 : in  STD_LOGIC_VECTOR (4 downto 0);
-           Rs2 : in  STD_LOGIC_VECTOR (4 downto 0);
-           Rd : in  STD_LOGIC_VECTOR (4 downto 0);
+    Port ( Rs1 : in  STD_LOGIC_VECTOR (5 downto 0);
+           Rs2 : in  STD_LOGIC_VECTOR (5 downto 0);
+           Rd : in  STD_LOGIC_VECTOR (5 downto 0);
            rst : in  STD_LOGIC;
            Dwr : in  STD_LOGIC_VECTOR (31 downto 0);
            ORs1 : out  STD_LOGIC_VECTOR (31 downto 0);

@@ -68,17 +68,30 @@ end process;
 
 process(op,op3,cwp)
 	begin
-		-- save y restore son  son formato 3, revisar manual
-		if (op="10") then
+		if (op="10") and (cwp = '1') then
 			-- para save
-			if (op3="111100")then
+			if (op3="111100")then -- save
 				ncwp<='0';
 			end if;
-			--restore
-			if (op3="111101")then
+			if (op3="111101")then --restore
 				ncwp<='1';
 			end if;
-		end if;				
+		end if;
+		if (op="10") and (cwp = '0') then
+			--restore
+			if (op3="111101")then --restore
+				ncwp<='1';
+			end if;
+			if (op3="111100")then --save
+				ncwp<='0';
+			end if;
+		end if;
+		if(op="10")then
+			if ((op3/="111100") and (op3/="111101"))then
+				ncwp <= cwp;
+			end if;
+		end if;
+		
 end process;
 
 end Behavioral;

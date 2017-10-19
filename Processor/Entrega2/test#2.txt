@@ -1,0 +1,11 @@
+mov 5,%g1
+mov -8,%l0
+mov 4,%l1
+sll %g1,2,%i0
+srl %l1,1,%i1
+restore %g0,0,%g0 --> Cambio de ventana a la 1
+add %g1,3,%l0
+save %g0,0,%g0 --> retorno a la ventana 0
+subcc %g0,4,%g0
+addx %g0,%g1, %g2
+mov %l0, %o0

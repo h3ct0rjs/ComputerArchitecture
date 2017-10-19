@@ -14,8 +14,8 @@ architecture Behavioral of PSR_Modifier is
 begin
 process(AluResult,OP1,OP2,AluOp)
 begin
-		if(aluOp = "000001" or AluOp = "000011")then--ADDCC ADDXCC
-			NZVC(3) <= AluResult(31);	
+			if(aluOp = "000001" or AluOp = "000011")then--ADDCC ADDXCC
+		NZVC(3) <= AluResult(31);	
 		if(AluResult = X"00000000")then
 			NZVC(2) <= '1';
 		else
@@ -43,8 +43,8 @@ begin
 				end if;
 				NZVC(1) <= '0';
 				NZVC(0) <= '0';
-			--else
-				--nzvc <= "1000";
+			else
+				nzvc <= "1000";
 			end if;
 		end if;
 	end if;
