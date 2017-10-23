@@ -33,7 +33,7 @@ architecture Behavioral of windows_manager_arch is
 
 begin
 process(rs1, rs2, rd, op, op3, CWP)
-	begin
+  begin
 
     no7 <= conv_std_logic_vector(15 + (conv_integer(cwp) * 16), 6);
 
@@ -47,47 +47,47 @@ process(rs1, rs2, rd, op, op3, CWP)
       nCWP <= '1';
     end if;
 
-		--si es locales y salida, usa la logica del video:
-			-- 10 y 23
-		if (rs1 >= "01000" and rs1 <= "10111") then
-			nrs1 <= conv_std_logic_vector(conv_integer(rs1) + (conv_integer(cwp) * 16), 6);
-		end if;
+    --si es locales y salida, usa la logica del video:
+    -- 10 y 23
+    if (rs1 >= "01000" and rs1 <= "10111") then
+      nrs1 <= conv_std_logic_vector(conv_integer(rs1) + (conv_integer(cwp) * 16), 6);
+    end if;
 
     if (rs2 >= "01000" and rs2 <= "10111") then
-			nrs2 <= conv_std_logic_vector(conv_integer(rs2) + (conv_integer(cwp) * 16), 6);
-		end if;
+      nrs2 <= conv_std_logic_vector(conv_integer(rs2) + (conv_integer(cwp) * 16), 6);
+    end if;
 
     if (rd >= "01000" and rd <= "10111") then
-			nrd <= conv_std_logic_vector(conv_integer(rd) + (conv_integer(cwp) * 16), 6);
-		end if;
+      nrd <= conv_std_logic_vector(conv_integer(rd) + (conv_integer(cwp) * 16), 6);
+    end if;
 
 
     --si es entrada
-		if (rs1 >= "11000" and rs1 <= "11111") then
-			nrs1 <= conv_std_logic_vector(conv_integer(rs1) - (conv_integer(cwp) * 16), 6);
-		end if;
+    if (rs1 >= "11000" and rs1 <= "11111") then
+      nrs1 <= conv_std_logic_vector(conv_integer(rs1) - (conv_integer(cwp) * 16), 6);
+    end if;
 
     if (rs2 >= "11000" and rs2 <= "11111") then
-			nrs2 <= conv_std_logic_vector(conv_integer(rs2) - (conv_integer(cwp) * 16), 6);
-		end if;
+      nrs2 <= conv_std_logic_vector(conv_integer(rs2) - (conv_integer(cwp) * 16), 6);
+    end if;
 
     if (rd >= "11000" and rd <= "11111") then
-			nrd <= conv_std_logic_vector(conv_integer(rd) - (conv_integer(cwp) * 16), 6);
-		end if;
+      nrd <= conv_std_logic_vector(conv_integer(rd) - (conv_integer(cwp) * 16), 6);
+    end if;
 
 
     --si son globales esas siempre van a quedar en la misma parte
-		if (rs1 >= "00000" and rs1 <= "00111") then
-			nrs1 <= '0' & rs1;
-		end if;
+    if (rs1 >= "00000" and rs1 <= "00111") then
+      nrs1 <= '0' & rs1;
+    end if;
 
     if (rs2 >= "00000" and rs2 <= "00111") then
-			nrs2 <= '0' & rs2;
-		end if;
+      nrs2 <= '0' & rs2;
+    end if;
 
     if (rd >= "00000" and rd <= "00111") then
-			nrd <= '0' & rd;
-		end if;
+      nrd <= '0' & rd;
+    end if;
 end process;
 
 end Behavioral;
