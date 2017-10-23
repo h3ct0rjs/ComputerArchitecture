@@ -1,15 +1,15 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
- 
+
 entity IM is
     port (
-		  rst  : in std_logic;
+		    rst  : in std_logic;
         addr : in  std_logic_vector(31 downto 0);
         data : out std_logic_vector(31 downto 0)
     );
 end IM;
- 
+
 architecture behavioral of IM is
     type memoria_rom is array (0 to 63) of std_logic_vector (31 downto 0);
     signal ROM : memoria_rom := (
@@ -78,7 +78,7 @@ architecture behavioral of IM is
 "00000000000000000000000000000000",
 "00000000000000000000000000000000",
 "00000000000000000000000000000000",
-"00000000000000000000000000000000" -- Fila con datos 56 a 63                                                  
+"00000000000000000000000000000000" -- Fila con datos 56 a 63
     );
 begin
 	process(rst, addr)

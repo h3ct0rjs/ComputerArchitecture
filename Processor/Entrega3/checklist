@@ -1,8 +1,8 @@
-npc
-pc
-adder_pc
-IM
-windows_manager
+npc                     ok
+pc                      ok
+adder_pc                ok
+IM                      ok
+windows_manager         
 MUX_windows_manager
 SEU31
 MUX_register_file
