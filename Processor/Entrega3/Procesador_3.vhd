@@ -78,7 +78,7 @@ COMPONENT PC
 		);
 	END COMPONENT;
 
-	COMPONENT MUX
+	COMPONENT MUX_rf
 	PORT(
 		Crs2 : IN std_logic_vector(31 downto 0);
 		SEUimm13 : IN std_logic_vector(31 downto 0);
@@ -168,7 +168,7 @@ begin
 		SEUimm32 => seu_out
 	);
 	
-	Inst_MUX: MUX PORT MAP(
+	Inst_MUX: MUX_rf PORT MAP(
 		Crs2 => crs2_aux,
 		SEUimm13 => seu_out,
 		i => im_out(13),
