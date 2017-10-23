@@ -2,8 +2,8 @@ npc                     ok
 pc                      ok
 adder_pc                ok
 IM                      ok
-windows_manager         
-MUX_windows_manager
+windows_manager         ok
+MUX_windows_manager     ok
 SEU31
 MUX_register_file
 Register_file
