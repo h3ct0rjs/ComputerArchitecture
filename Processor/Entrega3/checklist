@@ -4,7 +4,7 @@ adder_pc                ok
 IM                      ok
 windows_manager         ok
 MUX_windows_manager     ok
-SEU31
+SEU31                   ok
 MUX_register_file
 Register_file
 PSR
