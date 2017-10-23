@@ -6,7 +6,7 @@ windows_manager         ok
 MUX_windows_manager     ok
 SEU31                   ok
 MUX_register_file       ok
-Register_file
+Register_file           ok
 PSR
 PSR_Modifier
 ALU
