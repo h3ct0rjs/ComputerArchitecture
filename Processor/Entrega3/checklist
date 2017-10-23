@@ -1,0 +1,23 @@
+npc
+pc
+adder_pc
+IM
+windows_manager
+MUX_windows_manager
+SEU31
+MUX_register_file
+Register_file
+PSR
+PSR_Modifier
+ALU
+Control_unit
+SEU22
+corrimientos
+adder_SEU22
+adder_corrimiento
+MUX_corrimiento
+Data_memory
+MUX_Data_memory
+
+**solo se hace con fines de ir mirando que modulos
+ya estan y que otros hacen falta**
