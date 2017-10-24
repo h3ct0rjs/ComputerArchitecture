@@ -9,7 +9,7 @@ MUX_register_file       ok
 Register_file           ok
 PSR                     ok
 PSR_Modifier            ok
-ALU
+ALU                     ok
 Control_unit
 SEU22
 adder_SEU22
