@@ -93,7 +93,7 @@ COMPONENT PC
 		rs1 : IN std_logic_vector(5 downto 0);
 		rs2 : IN std_logic_vector(5 downto 0);
 		rd : IN std_logic_vector(5 downto 0); 
-		dwr : IN std_logic_vector(31 downto 0); 		
+		dwr : in  STD_LOGIC;
 		ORs1 : OUT std_logic_vector(31 downto 0);
 		ORs2 : OUT std_logic_vector(31 downto 0)
 		);

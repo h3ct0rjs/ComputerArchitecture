@@ -7,17 +7,17 @@ MUX_windows_manager     ok
 SEU31                   ok
 MUX_register_file       ok
 Register_file           ok
-PSR
-PSR_Modifier
+PSR                     ok
+PSR_Modifier            
 ALU
 Control_unit
 SEU22
-corrimientos
 adder_SEU22
 adder_corrimiento
 MUX_corrimiento
 Data_memory
 MUX_Data_memory
+corrimientos
 
 **solo se hace con fines de ir mirando que modulos
 ya estan y que otros hacen falta**
