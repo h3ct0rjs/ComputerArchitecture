@@ -15,7 +15,7 @@ SEU22                   ok
 adder_SEU22             ok
 adder_corrimiento       ok
 MUX_corrimiento         ok
-Data_memory
+Data_memory             ok
 MUX_Data_memory         ok
 
 **solo se hace con fines de ir mirando que modulos
