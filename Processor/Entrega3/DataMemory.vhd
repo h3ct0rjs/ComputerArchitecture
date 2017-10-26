@@ -25,7 +25,7 @@ begin
       if(reset = '1' or (WrEnMem='0' and RdEnMem='0')) then
         DataToMem <= (others => '0');
       elsif(WrEnMem = '1' and RdEnMem = '0') then
-        memory(conv_integer(ALUResult)) <= scrd;
+        memory(conv_integer(ALUResult)) <= crd;
       elsif(RdEnMem = '1' and WrEnMem = '0') then
         DataToMem <= memory(conv_integer(ALUResult));
       end if;

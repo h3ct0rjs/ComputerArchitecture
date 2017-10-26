@@ -12,7 +12,7 @@ Port ( OP  : in  STD_LOGIC_VECTOR (1 downto 0);
 
        wren : out  STD_LOGIC;
        PCsource : out  STD_LOGIC_VECTOR (1 downto 0);
-       ALUOP : out  STD_LOGIC_VECTOR (7 downto 0);
+       ALUOP : out  STD_LOGIC_VECTOR (5 downto 0);
        RdEnMem : out  STD_LOGIC;
        WrEnMem : out  STD_LOGIC;
        RFsource : out  STD_LOGIC_VECTOR (1 downto 0);
@@ -129,7 +129,7 @@ begin
         RFsource <= "00";--selecciona dato de memoria como datatoreg
         wren <= '1';
       when "000100" =>--store word
-        ALUOP <= x"010110"; --22
+        ALUOP <= "010110"; --22
         WrEnMem <= '1';--activa escritura en memoria
         RdEnMem <= '0';
       when others =>

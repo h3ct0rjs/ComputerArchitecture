@@ -15,16 +15,18 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 --restore: cwp<=cwp+1 >> cwp<='1'
 
 entity windows_manager_arch is
-    Port ( rs1 : in  STD_LOGIC_VECTOR (4 downto 0);
+    Port (
+           rst : in std_logic;
+           rs1 : in  STD_LOGIC_VECTOR (4 downto 0);
            rs2 : in  STD_LOGIC_VECTOR (4 downto 0);
            rd : in  STD_LOGIC_VECTOR (4 downto 0);
            op : in  STD_LOGIC_VECTOR (1 downto 0);
            op3 : in  STD_LOGIC_VECTOR (5 downto 0);
-           CWP : in  STD_LOGIC;
+           CWP : in  STD_LOGIC_VECTOR (4 downto 0);
            nrs1 : out  STD_LOGIC_VECTOR (5 downto 0);
            nrs2 : out  STD_LOGIC_VECTOR (5 downto 0);
            nrd : out  STD_LOGIC_VECTOR (5 downto 0);
-           nCWP : out  STD_LOGIC;
+           nCWP : out  STD_LOGIC_VECTOR (4 downto 0);
            no7 : out  STD_LOGIC_VECTOR (5 downto 0)
          );
 end windows_manager_arch;
@@ -39,12 +41,12 @@ process(rs1, rs2, rd, op, op3, CWP)
 
     --save
     if(op = "10" and op3 = "111100")then
-      nCWP <= '0';
+      nCWP <= "0000";
     end if;
 
     --restore
     if(op = "10" and op3 = "111101")then
-      nCWP <= '1';
+      nCWP <= "1111";
     end if;
 
     --si es locales y salida, usa la logica del video:
