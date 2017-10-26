@@ -10,7 +10,7 @@ Register_file           ok
 PSR                     ok
 PSR_Modifier            ok
 ALU                     ok
-Control_unit
+Control_unit            ok
 SEU22
 adder_SEU22
 adder_corrimiento
