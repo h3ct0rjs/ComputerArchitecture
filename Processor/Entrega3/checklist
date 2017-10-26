@@ -11,7 +11,7 @@ PSR                     ok
 PSR_Modifier            ok
 ALU                     ok
 Control_unit            ok
-SEU22
+SEU22                   ok
 adder_SEU22
 adder_corrimiento
 MUX_corrimiento
