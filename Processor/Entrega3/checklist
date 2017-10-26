@@ -14,10 +14,9 @@ Control_unit            ok
 SEU22                   ok
 adder_SEU22             ok
 adder_corrimiento       ok
-MUX_corrimiento
+MUX_corrimiento         ok
 Data_memory
-MUX_Data_memory
-corrimientos
+MUX_Data_memory         ok
 
 **solo se hace con fines de ir mirando que modulos
 ya estan y que otros hacen falta**
