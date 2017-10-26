@@ -24,7 +24,7 @@ begin
         icc <= (others => '0');
       else
         Carry <=NZVC(0);
-        icc <= NZCV;
+        icc <= NZVC;
         Cwp <= Ncwp;
       end if;
     end if;
